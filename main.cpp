@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <cstring>
 #include <windows.h>
 #include <stdio.h>
 #include <conio.h>
@@ -71,21 +72,22 @@ int _tmain()
         else {
             if (numofact==2)
                 {
-                std::cout<<"Enter message text:  ";
-                std::cin >> szMsg;
-                CopyMemory((PVOID)pBuf, szMsg, (_tcslen(szMsg) * sizeof(TCHAR)));
-            }
+                    memset((void*)pBuf,0,BUF_SIZE);
+                    std::cout<<"Enter message text:  ";
+                    std::cin >> szMsg;
+                    CopyMemory((PVOID)pBuf, szMsg, (_tcslen(szMsg) * sizeof(TCHAR)));
+                }
             else {
                 if (numofact==3){
                         exit(1);
                 }
                 else if ((numofact!=1)&&(numofact!=2)&&(numofact!=3))
                     { std::cout<<"Uncorrect number\n\n";
-                    }}}}
+                    }}}
+        }
 
     UnmapViewOfFile(pBuf);
     CloseHandle(hFile);
 
     return 0;
 }
-# spo_lab2
